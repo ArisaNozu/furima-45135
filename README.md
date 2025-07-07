@@ -43,11 +43,11 @@
 
 ## ordersテーブル
 
-| Column     | Type    | Options      | 説明                         |
-|------------|---------|--------------|------------------------------|
-| id         | integer | PRIMARY KEY  | 購入記録のID（自動採番）     |
-| user_id    | integer | null: false  | 購入者のユーザーID（外部キー） |
-| product_id | integer | null: false  | 購入された商品のID（外部キー） |
+| Column     | Type       | Options                         | 説明                                       |
+|------------|------------|---------------------------------|--------------------------------------------|
+| id         | integer    | PRIMARY KEY                     | 購入記録のID（自動採番）                       |
+| user       | references | null: false, foreign_key: true  | 購入者のユーザーID（外部キー）                  |
+| product    | references | null: false, foreign_key: true  | 購入された商品のID（外部キー）                  |
 
 
 ### Association
