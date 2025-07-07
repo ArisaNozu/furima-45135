@@ -2,6 +2,7 @@
 
 | Column             | Type   | Options                   |                            |
 | ------------------ | ------ | ------------------------- |----------------------------|
+| id                 | integer| PRIMARY KEY               | ユーザーのID（自動採          |
 | nickname           | string | null: false               | ニックネーム                 |
 | email              | string | null: false, unique: true | メールアドレス（ログインID）    |
 | encrypted_password | string | null: false               | 暗号化されたパスワード          |
@@ -63,6 +64,7 @@
 
 | Column            | Type       | Options                        | 説明                            |
 |-------------------|------------|--------------------------------|---------------------------------|
+| id                | integer    | PRIMARY KEY                    | 住所のID（自動採番）               |
 | postal_code       | string     | null: false                    | 郵便番号                         |
 | prefecture_id     | integer    | null: false                    | 都道府県のID（ActiveHash）        |
 | city              | string     | null: false                    | 市町村                           |
