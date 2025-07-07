@@ -32,7 +32,7 @@
 | prefecture_id     | integer   | null: false      | 発送元の地域（ActiveHash）   |
 | shipping_days_id  | integer   | null: false      | 発送までの日数（ActiveHash） |
 | price             | integer   | null: false      | 商品価格                    |
-| user_id           | integer   | null: false      | 出品者のユーザーID           |
+| user              | references | null: false, foreign_key: true | 出品者のユーザーID      |
 
 ### Association
 - belongs_to :user
