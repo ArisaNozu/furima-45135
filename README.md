@@ -30,7 +30,7 @@
 | condition_id      | integer   | null: false      | 商品の状態のID（ActiveHash） |
 | shipping_cost_id  | integer   | null: false      | 配送料の負担（ActiveHash）   |
 | prefecture_id     | integer   | null: false      | 発送元の地域（ActiveHash）   |
-| shipping_days_id  | integer   | null: false      | 発送までの日数（ActiveHash） |
+| shipping_day_id   | integer   | null: false      | 発送までの日数（ActiveHash） |
 | price             | integer   | null: false      | 商品価格                    |
 | user              | references | null: false, foreign_key: true | 出品者のユーザーID      |
 
