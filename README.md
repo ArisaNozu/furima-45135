@@ -21,18 +21,18 @@
 
 ## productsテーブル
 
-| Column            | Type      | Options          |                            |
-|-------------------|-----------|------------------|----------------------------|
-| id                | integer   | PRIMARY KEY      | 商品のID（自動採番）         |
-| name              | string    | null: false      | 商品名                     |
-| description       | text      | null: false      | 商品の説明                  |
-| category_id       | integer   | null: false      | カテゴリーのID（ActiveHash） |
-| condition_id      | integer   | null: false      | 商品の状態のID（ActiveHash） |
-| shipping_cost_id  | integer   | null: false      | 配送料の負担（ActiveHash）   |
-| prefecture_id     | integer   | null: false      | 発送元の地域（ActiveHash）   |
-| shipping_day_id   | integer   | null: false      | 発送までの日数（ActiveHash） |
-| price             | integer   | null: false      | 商品価格                    |
-| user              | references | null: false, foreign_key: true | 出品者のユーザーID      |
+| Column            | Type      | Options                         |                            |
+|-------------------|-----------|---------------------------------|----------------------------|
+| id                | integer   | PRIMARY KEY                     | 商品のID（自動採番）          |
+| name              | string    | null: false                     | 商品名                      |
+| description       | text      | null: false                     | 商品の説明                   |
+| category_id       | integer   | null: false                     | カテゴリーのID（ActiveHash）  |
+| condition_id      | integer   | null: false                     | 商品の状態のID（ActiveHash）  |
+| shipping_cost_id  | integer   | null: false                     | 配送料の負担（ActiveHash）    |
+| prefecture_id     | integer   | null: false                     | 発送元の地域（ActiveHash）    |
+| shipping_day_id   | integer   | null: false                     | 発送までの日数（ActiveHash）  |
+| price             | integer   | null: false                     | 商品価格                    |
+| user              | references | null: false, foreign_key: true | 出品者のユーザーID            |
 
 ### Association
 - belongs_to :user
