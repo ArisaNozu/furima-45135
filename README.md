@@ -2,7 +2,7 @@
 
 | Column             | Type   | Options                   |                            |
 | ------------------ | ------ | ------------------------- |----------------------------|
-| nickname           | string | null: false.              | ニックネーム                 |
+| nickname           | string | null: false               | ニックネーム                 |
 | email              | string | null: false, unique: true | メールアドレス（ログインID）    |
 | encrypted_password | string | null: false               | 暗号化されたパスワード          |
 | last_name          | string | null: false               | 苗字（全角）                  |
@@ -51,10 +51,31 @@
 
 
 ### Association
--  belongs_to :user
--  belongs_to :product
+- belongs_to :user
+- belongs_to :product
+- has_one :address
 
 
+
+
+
+## addressesテーブル
+
+| Column            | Type       | Options                        | 説明                            |
+|-------------------|------------|--------------------------------|---------------------------------|
+| postal_code       | string     | null: false                    | 郵便番号                         |
+| prefecture_id     | integer    | null: false                    | 都道府県のID（ActiveHash）        |
+| city              | string     | null: false                    | 市町村                           |
+| house_number      | string     | null: false                    | 番地                             |
+| building_name     | string     |                                | 建物名 ※任意                      |
+| phone_number      | string     | null: false                    | 電話番号                         |
+| order             | references | null: false, foreign_key: true	| 紐づく購入情報（ordersテーブル参照） |
+
+
+
+
+### Association
+- belongs_to :order
 
 
 
