@@ -8,7 +8,6 @@ class User < ApplicationRecord
   VALID_KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/
 
   validates :nickname, presence: true
-  validates :email, presence: true ,uniqueness: true
   validates :last_name, presence: true, format: { with: VALID_NAME_REGEX, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
   validates :first_name, presence: true, format: { with: VALID_NAME_REGEX, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
   validates :last_name_kana, presence: true, format: { with: VALID_KATAKANA_REGEX, message: 'は全角カタカナで入力してください' }
