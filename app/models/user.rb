@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々ー]+\z/
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   VALID_KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/
 
   validates :nickname, presence: true
