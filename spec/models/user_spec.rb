@@ -69,6 +69,13 @@ describe 'ユーザー新規登録' do
       expect(@user.errors.full_messages).to include 'Password は半角英数字混合で入力してください'
     end
 
+    it 'passwordに全角文字を含んでいると登録できない(パスワードは、半角英数字混合での入力が必須であること)' do
+      @user.password = 'ａｂｃ１２３'
+      @user.password_confirmation = 'ａｂｃ１２３'
+      @user.valid?
+      expect(@user.errors.full_messages).to include 'Password は半角英数字混合で入力してください'
+    end
+
     it 'passwordが一致しないときは登録できない(パスワードとパスワード（確認）は、値の一致が必須であること。)' do
       @user.password = 'abc123'
       @user.password_confirmation = 'different'
@@ -113,13 +120,13 @@ describe 'ユーザー新規登録' do
     end
 
     it 'last_name_kanaが全角（カタカナ）でないと登録できない(お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。)' do
-      @user = FactoryBot.build(:user, last_name_kana: 'Smith')  # 半角英字
+      @user.last_name_kana = 'Smith'  # 半角英字
       @user.valid?
       expect(@user.errors.full_messages).to include 'Last name kana は全角カタカナで入力してください'
     end
 
     it 'first_name_kanaが全角（カタカナ）でないと登録できない(お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。)' do
-      @user = FactoryBot.build(:user, first_name_kana: 'Taro')  # 半角英字
+      @user.first_name_kana = 'Taro'  # 半角英字
       @user.valid?
       expect(@user.errors.full_messages).to include 'First name kana は全角カタカナで入力してください'
     end
