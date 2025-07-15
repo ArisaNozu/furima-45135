@@ -22,6 +22,7 @@ class Product < ApplicationRecord
   validates :shipping_day_id, presence: true, numericality: { other_than: 1 , message: "を選択してください"}
   validates :price, presence: true
   validates :image, presence: true
+  validates :user, presence: true
 
 
 # 数値であることのチェック

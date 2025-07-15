@@ -99,6 +99,13 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include 'Price は数値で入力してください'
       end
 
+      it 'userが紐づいていない場合は登録できない' do
+        @product.user = nil
+        @product.valid?
+        expect(@product.errors.full_messages).to include 'User must exist'
+      end
+
+
     end
   end
 end
