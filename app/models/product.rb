@@ -24,14 +24,15 @@ class Product < ApplicationRecord
   validates :image, presence: true
 
 
-  # 価格の範囲チェック（例：300〜9,999,999円）
-  validates :price, numericality: { 
-    only_integer: true,
-    greater_than_or_equal_to: 300,
-    less_than_or_equal_to: 9_999_999,
-    message: 'は300円〜9,999,999円の間で設定してください'
-  }
+# 数値であることのチェック
+validates :price, numericality: { only_integer: true, message: 'は数値で入力してください' }
 
+# 範囲チェック（数値であることが保証された後に実行される）
+validates :price, numericality: {
+  greater_than_or_equal_to: 300,
+  less_than_or_equal_to: 9_999_999,
+  message: 'は300円〜9,999,999円の間で設定してください'
+}
 
 end
 
