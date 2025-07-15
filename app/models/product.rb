@@ -3,6 +3,7 @@ class Product < ApplicationRecord
 # アソシエーション
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -11,6 +12,9 @@ class Product < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
 
+  def sold_out?
+    order.present?
+  end
 
 # バリデーション
   validates :name, presence: true
