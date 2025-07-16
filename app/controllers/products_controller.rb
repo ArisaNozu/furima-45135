@@ -4,11 +4,12 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
+    @products = Product.includes(:image_attachment).order(created_at: :desc)
   end
 
   
   def new
-  @product = Product.new
+    @product = Product.new
   end
 
 
