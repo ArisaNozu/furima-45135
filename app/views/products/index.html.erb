@@ -126,25 +126,26 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
-
+<ul class='item-lists'>
+  <% if @products.any? %>
+    <% @products.each do |product| %>
       <li class='list'>
-        <% @products.each do |product| %>
         <div class='item-img-content'>
-          <%= image_tag url_for(product.image), class: "item-img" %>
+          <% if product.image.attached? %>
+            <%= image_tag url_for(product.image), class: "item-img" %>
+          <% else %>
+            <%= image_tag "item-sample.png", class: "item-img" %>
+          <% end %>
 
-        <% if product.sold_out? %>
-      <div class='sold-out'>
-        <span>Sold Out!!</span>
-      </div>
-        <% end %>
-
-
+          <% if product.sold_out? %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
         </div>
+
         <div class='item-info'>
-          <h3 class='item-name'>
-            <%= product.name %>
-          </h3>
+          <h3 class='item-name'><%= product.name %></h3>
           <div class='item-price'>
             <span><%= product.price %>円<br><%= product.shipping_cost.name %></span>
             <div class='star-btn'>
@@ -153,18 +154,14 @@
             </div>
           </div>
         </div>
-        <% end %>
       </li>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-      <li class='list'>
-        <%= link_to '#' do %>
+    <% end %>
+  <% else %>
+    <li class='list'>
+      <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
-          <h3 class='item-name'>
-            商品を出品してね！
-          </h3>
+          <h3 class='item-name'>商品を出品してね！</h3>
           <div class='item-price'>
             <span>99999999円<br>(税込み)</span>
             <div class='star-btn'>
@@ -173,14 +170,12 @@
             </div>
           </div>
         </div>
-        <% end %>
-      </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-    </ul>
-  </div>
-  <%# /商品一覧 %>
-</div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>  
+<%# /商品一覧 %>
+
 
 
   <%= link_to( new_product_path, class: 'purchase-btn') do %>
