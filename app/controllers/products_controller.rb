@@ -1,7 +1,12 @@
 class ProductsController < ApplicationController
 
 
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create,:edit, :update]
+  before_action :set_product, only: [:show, :edit, :update]
+  before_action :move_to_index, only: [:edit, :update]
+
+
+
 
   def index
     @products = Product.includes(:image_attachment).order(created_at: :desc)
@@ -25,10 +30,20 @@ class ProductsController < ApplicationController
   
 
   def show
-    @product = Product.find(params[:id])
   end
 
 
+  def edit
+  end
+
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
 
   private
@@ -47,4 +62,17 @@ class ProductsController < ApplicationController
       :image
     ).merge(user_id: current_user.id)
   end
+
+
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+
+  def move_to_index
+    redirect_to root_path if @product.user != current_user
+  end
+
+
 end
