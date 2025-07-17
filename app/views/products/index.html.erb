@@ -130,6 +130,7 @@
   <% if @products.any? %>
     <% @products.each do |product| %>
       <li class='list'>
+          <%= link_to product_path(product), class: 'item-link' do %>
         <div class='item-img-content'>
           <% if product.image.attached? %>
             <%= image_tag url_for(product.image), class: "item-img" %>
@@ -154,6 +155,7 @@
             </div>
           </div>
         </div>
+    <% end %>
       </li>
     <% end %>
   <% else %>
