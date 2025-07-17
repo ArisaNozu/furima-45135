@@ -19,7 +19,7 @@
         ¥ <%= number_with_delimiter(@product.price) %>
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <%= @product.shipping_cost.name %>
       </span>
     </div>
 
