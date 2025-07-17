@@ -6,7 +6,6 @@ RSpec.describe Product, type: :model do
   end
 
   describe '商品出品' do
-
     context '出品できるとき（正常系）' do
       it 'すべての項目が正しく入力されていれば出品できる' do
         expect(@product).to be_valid
@@ -14,7 +13,6 @@ RSpec.describe Product, type: :model do
     end
 
     context '出品できないとき（異常系）' do
-
       it '商品画像が空では出品できない(商品画像を1枚つけることが必須であること)' do
         @product.image = nil
         @product.valid?
@@ -36,31 +34,31 @@ RSpec.describe Product, type: :model do
       it 'カテゴリーが「---」では出品できない(カテゴリーの情報が必須であること)' do
         @product.category_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include "Category を選択してください"
+        expect(@product.errors.full_messages).to include 'Category を選択してください'
       end
 
       it '商品の状態が「---」では出品できない(商品の状態の情報が必須であること)' do
         @product.condition_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include "Condition を選択してください"
+        expect(@product.errors.full_messages).to include 'Condition を選択してください'
       end
 
       it '配送料の負担が「---」では出品できない(配送料の負担の情報が必須であること)' do
         @product.shipping_cost_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include "Shipping cost を選択してください"
+        expect(@product.errors.full_messages).to include 'Shipping cost を選択してください'
       end
 
       it '発送元の地域が「---」では出品できない(発送元の地域の情報が必須であること)' do
         @product.prefecture_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include "Prefecture を選択してください"
+        expect(@product.errors.full_messages).to include 'Prefecture を選択してください'
       end
 
       it '発送までの日数が「---」では出品できない(発送までの日数の情報が必須であること)' do
         @product.shipping_day_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include "Shipping day を選択してください"
+        expect(@product.errors.full_messages).to include 'Shipping day を選択してください'
       end
 
       it '価格が空では出品できない(価格の情報が必須であること)' do
@@ -104,8 +102,6 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include 'User must exist'
       end
-
-
     end
   end
 end
