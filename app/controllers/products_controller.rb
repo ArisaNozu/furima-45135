@@ -1,22 +1,15 @@
 class ProductsController < ApplicationController
-
-
-  before_action :authenticate_user!, only: [:new, :create,:edit, :update]
-  before_action :set_product, only: [:show, :edit, :update]
-  before_action :move_to_index, only: [:edit, :update]
-
-
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.includes(:image_attachment).order(created_at: :desc)
   end
 
-  
   def new
     @product = Product.new
   end
-
 
   def create
     @product = Product.new(product_params)
@@ -27,15 +20,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  
-
   def show
   end
 
-
   def edit
   end
-
 
   def update
     if @product.update(product_params)
@@ -45,9 +34,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+    redirect_to root_path
+  end
 
   private
-
 
   def product_params
     params.require(:product).permit(
@@ -63,16 +55,11 @@ class ProductsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-
-
   def set_product
     @product = Product.find(params[:id])
   end
 
-
   def move_to_index
     redirect_to root_path if @product.user != current_user
   end
-
-
 end
