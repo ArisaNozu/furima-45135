@@ -8,10 +8,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-  @order_form = OrderForm.new(order_form_params.merge(user_id: current_user.id, product_id: @product.id))
-    if @order_form.valid?
-      @order_form.save
-      redirect_to root_path
+    @order = Order.new(order_params)
+    if @order.valid?
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵→鍵情報を環境変数に設定
+      Payjp::Charge.create(
+        amount: order_params[:price],  # 商品の値段
+        card: order_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
+      @order.save
+      return redirect_to root_path
     else
       render :index
     end
