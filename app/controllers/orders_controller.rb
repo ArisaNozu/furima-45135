@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
 
   def create
   @order_form = OrderForm.new(order_form_params.merge(user_id: current_user.id, product_id: @product.id))
-
     if @order_form.valid?
       @order_form.save
       redirect_to root_path
@@ -22,7 +21,7 @@ class OrdersController < ApplicationController
     @product = Product.find(params[:product_id])
   end
 
-    def move_to_root
+  def move_to_root
     # 自分が出品者、またはすでに購入済みの商品だったらトップに戻す
     if @product.user_id == current_user.id || @product.order.present?
       redirect_to root_path
@@ -35,6 +34,7 @@ class OrdersController < ApplicationController
       :building_name, :phone_number, :token
     )
   end
+
 
 
 end
