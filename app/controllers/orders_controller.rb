@@ -9,16 +9,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵→鍵情報を環境変数に設定
+     token = order_form_params[:token] 
+
+    @order_form = OrderForm.new(order_form_params.merge(user_id: current_user.id, product_id: @product.id))
+    if @order_form.valid?
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: order_params[:price],  # 商品の値段
-        card: order_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        amount: @product.price,              # ← ここ修正
+        card: token,  
+        currency: 'jpy'
       )
-      @order.save
-      return redirect_to root_path
+      @order_form.save
+      redirect_to root_path
     else
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index
