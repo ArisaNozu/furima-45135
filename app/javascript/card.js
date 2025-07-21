@@ -22,4 +22,5 @@ payjp.createToken(numberElement).then(function (response) {
   });
 };
 
-window.addEventListener("load", pay);
+window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);
