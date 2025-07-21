@@ -78,7 +78,9 @@ end
 
 gem 'devise'
 
-gem 'rspec-rails', '~> 4.0.0'
+group :development, :test do
+  gem 'rspec-rails', '~> 5.1'
+end
 
 gem 'factory_bot_rails'
 
