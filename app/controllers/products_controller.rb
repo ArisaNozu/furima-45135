@@ -60,8 +60,8 @@ class ProductsController < ApplicationController
   end
 
   def move_to_index
-    if @product.user != current_user || @product.order.present?
+    return unless @product.user != current_user || @product.order.present?
+
     redirect_to root_path
-    end
   end
 end

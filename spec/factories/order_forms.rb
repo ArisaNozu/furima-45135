@@ -3,7 +3,6 @@ FactoryBot.define do
     association :user
     association :product
 
-
     postal_code     { '123-4567' }
     prefecture_id   { 2 } # 1以外のID（ActiveHashで「---」以外）
     city            { '横浜市' }
@@ -12,11 +11,9 @@ FactoryBot.define do
     phone_number    { '09012345678' }
     token           { 'tok_abcdefghijk00000000000000000' }
 
-  after(:build) do |order_form|
-    order_form.user_id = create(:user).id
-    order_form.product_id = create(:product).id
-  end
-
-
+    after(:build) do |order_form|
+      order_form.user_id = create(:user).id
+      order_form.product_id = create(:product).id
+    end
   end
 end

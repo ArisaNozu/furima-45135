@@ -86,7 +86,6 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Product can't be blank")
       end
-
     end
   end
 end
