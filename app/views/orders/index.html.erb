@@ -1,6 +1,10 @@
 <%= render "shared/second-header"%>
+
+
 <script src="https://js.pay.jp/v2/pay.js"></script>
-<%= include_gon %>
+<%= javascript_include_tag 'card', defer: true %> 
+
+
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -126,4 +130,8 @@
     <% end %>
   </div>
 </div>
+
+
+
+
 <%= render "shared/second-footer"%>
