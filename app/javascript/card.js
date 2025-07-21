@@ -3,7 +3,8 @@ const pay = () => {
   if (window._payjpAlreadyInitialized) return;
 
   // mountされたかチェック
-  if (document.getElementById("number-form").childElementCount > 0) return;
+  const numberForm = document.getElementById("number-form");
+  if (!numberForm || numberForm.childElementCount > 0) return;
 
   if (typeof gon === "undefined" || !gon.public_key) {
     console.error("gon.public_key is undefined");
