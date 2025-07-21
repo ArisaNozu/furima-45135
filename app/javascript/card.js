@@ -1,8 +1,24 @@
-# Pin npm packages by running ./bin/importmap
+const pay = () => {
+  const payjp = Payjp('pk_test_92f88b5e311c383453af263b')// PAY.JPテスト公開鍵
+  const elements = payjp.elements();
+  const numberElement = elements.create('cardNumber');
+  const expiryElement = elements.create('cardExpiry');
+  const cvcElement = elements.create('cardCvc');
 
-pin "application", preload: true
-pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
-pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
-pin_all_from "app/javascript/controllers", under: "controllers"
-pin "card", to: "card.js"
+  numberElement.mount('#number-form');
+  expiryElement.mount('#expiry-form');
+  cvcElement.mount('#cvc-form');
+  const form = document.getElementById('charge-form')
+  form.addEventListener("submit", (e) => {
+payjp.createToken(numberElement).then(function (response) {
+      if (response.error) {
+      } else {
+        const token = response.id;
+        console.log(token)
+      }
+    });
+    e.preventDefault();
+  });
+};
+
+window.addEventListener("load", pay);
