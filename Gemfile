@@ -65,6 +65,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'database_cleaner-active_record'
 end
 
 
@@ -78,7 +79,9 @@ end
 
 gem 'devise'
 
-gem 'rspec-rails', '~> 4.0.0'
+group :development, :test do
+  gem 'rspec-rails', '~> 5.1'
+end
 
 gem 'factory_bot_rails'
 
@@ -89,3 +92,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem 'active_hash'
+
+gem 'payjp'
+
+gem 'gon'

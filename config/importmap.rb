@@ -8,3 +8,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "sales_fee", to: "sales_fee.js"
 
+pin "card", to: "card.js"
