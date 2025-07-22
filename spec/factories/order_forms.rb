@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :order_form do
-    association :user
-    association :product
 
     postal_code     { '123-4567' }
     prefecture_id   { 2 } # 1以外のID（ActiveHashで「---」以外）
