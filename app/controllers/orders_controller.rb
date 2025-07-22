@@ -27,6 +27,8 @@ class OrdersController < ApplicationController
     end
   end
 
+  private
+
   def set_product
     @product = Product.find(params[:product_id])
   end
@@ -44,4 +46,5 @@ class OrdersController < ApplicationController
       :building_name, :phone_number, :token
     )
   end
+
 end
